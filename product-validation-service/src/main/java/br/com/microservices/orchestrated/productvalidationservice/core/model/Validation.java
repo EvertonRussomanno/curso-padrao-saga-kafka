@@ -24,7 +24,7 @@ public class Validation {
     private String orderId;
 
     @Column(nullable = false)
-    private String validationId;
+    private String transactionId;
 
     @Column(nullable = false)
     private boolean success;
