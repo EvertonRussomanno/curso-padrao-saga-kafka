@@ -15,6 +15,7 @@ spring:
   data:
     mongodb:
       database: admin
+      authentication-database: admin
       uri: ${MONGO_DB_URI:mongodb://admin:123456@localhost:27017}
 
 logging:

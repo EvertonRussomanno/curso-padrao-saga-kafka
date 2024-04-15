@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-@Document(collation = "order")
+@Document(collection = "order")
 public class Order {
 
     @Id

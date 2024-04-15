@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @Builder
-@Document(collation = "event")
+@Document(collection = "event")
 public class Event {
 
     @Id
