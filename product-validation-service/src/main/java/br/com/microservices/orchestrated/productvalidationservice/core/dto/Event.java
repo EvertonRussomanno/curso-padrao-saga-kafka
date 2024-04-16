@@ -37,7 +37,7 @@ public class Event {
     public void addToHistory(History history){
         if (isEmpty(eventHistory)){
             eventHistory = new ArrayList<>();
-            eventHistory.add(history);
         }
+        eventHistory.add(history);
     }
 }

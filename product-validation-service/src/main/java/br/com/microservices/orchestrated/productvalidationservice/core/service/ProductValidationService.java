@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
-import static br.com.microservices.orchestrated.productvalidationservice.core.enums.ESagaStatus.*;
+import static br.com.microservices.orchestrated.productvalidationservice.core.enums.ESagaStatus.FAIL;
+import static br.com.microservices.orchestrated.productvalidationservice.core.enums.ESagaStatus.ROLLBACK_PENDING;
+import static br.com.microservices.orchestrated.productvalidationservice.core.enums.ESagaStatus.SUCCESS;
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Slf4j
@@ -120,13 +122,13 @@ public class ProductValidationService {
         kafkaProducer.sendEvent(jsonUtil.toJason(event));
     }
 
-    private void changeValidationToFail(Event event){
+    private void changeValidationToFail(Event event) {
         validationRepository
-                .findByOrderIdAndTransactionId(event.getPayload().getId(), event.getTransactionId())
+                .findByOrderIdAndTransactionId(event.getOrderId(), event.getTransactionId())
                 .ifPresentOrElse(validation -> {
-                    validation.setSuccess(false);
-                    validationRepository.save(validation);
-                    },
-                    () -> createValidation(event, false));
+                            validation.setSuccess(false);
+                            validationRepository.save(validation);
+                        },
+                        () -> createValidation(event, false));
     }
 }
