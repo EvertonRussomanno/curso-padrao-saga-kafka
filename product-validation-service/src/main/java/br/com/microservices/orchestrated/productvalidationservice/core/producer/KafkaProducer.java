@@ -18,7 +18,7 @@ public class KafkaProducer {
 
     public void sendEvent(String payload){
         try{
-            log.info("Sending evento to topic {} with data {}", orchestratorTopic, payload);
+            log.info("Sending event to topic {} with data {}", orchestratorTopic, payload);
             kafkaTemplate.send(orchestratorTopic, payload);
         }catch (Exception ex){
             log.error("Error trying to send data to topic {} with data {}", orchestratorTopic, payload, ex);
